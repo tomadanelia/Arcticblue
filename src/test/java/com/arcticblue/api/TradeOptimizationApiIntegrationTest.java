@@ -84,7 +84,7 @@ class TradeOptimizationApiIntegrationTest {
                                   {"tradeName":"Large","marginRequired":3,"expectedPnl":100}
                                 ]}
                                 """))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.selectedTrades", hasSize(0)))
                 .andExpect(jsonPath("$.totalMarginRequired").value(0))
                 .andExpect(jsonPath("$.totalExpectedPnl").value(0));

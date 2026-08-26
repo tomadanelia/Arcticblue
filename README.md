@@ -130,7 +130,7 @@ Results are newest first. `page` starts at zero; `size` must be between 1 and 10
 
 The algorithm keeps only non-dominated `(margin, P&L)` states after each candidate, providing an exact 0/1-knapsack result without allocating memory proportional to a potentially large margin limit. Ties in total P&L are resolved by choosing the lower-margin result, then stable input order.
 
-Invalid payloads return HTTP `400` with a message and field-level validation errors. If nothing fits (including an empty candidate list), the API returns HTTP `201` for POST with an empty selection and zero totals. The assignment's HTTP `200` no-fit rule applies to the result itself; the endpoint-specific requirement mandates HTTP `201` for every successful POST.
+Invalid payloads return HTTP `400` with a message and field-level validation errors. A successful optimization that selects at least one trade returns HTTP `201`. If no trade is selected (including when no candidate fits or the candidate list is empty), POST returns HTTP `200` with an empty selection and zero totals, as required by the no-fit rule.
 
 ## Schema and indexes
 
